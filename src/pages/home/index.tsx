@@ -14,16 +14,12 @@ export default function Home() {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchStoryIds = async () => {
-      const fetchedStoryIds = await getStoryIds(
-        (topics as IdParams) || "newstories"
-      );
+    (async () => {
+      const data = await getStoryIds((topics as IdParams) || "newstories");
       if (isMounted) {
-        setStoryIds(fetchedStoryIds);
+        setStoryIds(data);
       }
-    };
-
-    fetchStoryIds();
+    })();
 
     return () => {
       isMounted = false;
