@@ -18,6 +18,8 @@ export const Article = memo(
 
     if (!story) return <ArticleLoader idx={idx} />;
 
+    console.log(story);
+
     return (
       <article className="w-full space-y-2">
         <a
@@ -34,9 +36,18 @@ export const Article = memo(
           />
         )}
         <div className="flex items-center justify-between">
-          <p className="badge">
-            <b>By: </b> {story.by}
-          </p>
+          <div className="flex items-center gap-x-2">
+            <a
+              className="badge hover:bg-gray-300 transition-colors"
+              target="_blank"
+              href={`https://news.ycombinator.com/user?id=${story.by}`}
+            >
+              <b>By: </b> {story.by}
+            </a>
+            <p className="badge">
+              <b>Score: </b> {story.score}
+            </p>
+          </div>
           <p className="text-xs">
             <b>Posted: </b>
             {mapTime(story.time)}
